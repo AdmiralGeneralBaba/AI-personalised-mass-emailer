@@ -11,8 +11,9 @@ class LinkedInPeopleProfileSpider(scrapy.Spider):
         }
 
     def start_requests(self):
-        listFinder = AIEmailingSystem()
-        profile_tuples = listFinder.extract_final(path, 0)
+        # listFinder = AIEmailingSystem()
+        # profile_tuples = listFinder.extract_final(path, 0)
+        profile_tuples = ["dtiareh1@gmail.com"]["david_tiareh"]
 
         for profile in profile_tuples:    
             linkedin_people_url = f'https://www.linkedin.com/in/{profile[1]}/' 
