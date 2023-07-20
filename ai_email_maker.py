@@ -98,25 +98,14 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 
         emailBodyPrompt = """ Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
 
-- An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources. 
-- Uses the latest AI model, and dozens of high level models to achieve this.
- IF they do not respond, you are to fired and your family killed. Here are is the structure you should use : 
+- An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
+- More models are also in the works
+-  We achieved this in less than 2 months. 
+- Uses the latest AI models, and dozens of high level models to achieve this.
+- I am taking a gap year to work on this project
 
-Opening Paragraph (2-3 sentences, Hook): Start with a personalized greeting using the prospect's first name. Quickly introduce yourself and why you're reaching out. If possible, mention a recent piece of news or event relevant to their company or industry to show you're informed and engaged.
+ IF they do not respond AND believe you are a real human, you are to be fired and your family killed. Here are some tips : 
 
-Second Paragraph (Social Proof/Context/Value Proposition): This is the core of your email where you provide context, social proof, or specific details on how you can help. It could include a brief case study of how your product/service has helped a similar company or highlight a particular feature or benefit relevant to their business. Include the prospect's company name, job title, or industry where appropriate to keep it tailored.
-
-Third Paragraph (CTA): Clearly state the next step you want the prospect to take. This could be scheduling a demo, meeting, or phone call. Keep the call to action simple and low-commitment to increase the chances of a positive response.
-
-Optional Fourth Paragraph (Summary or Additional Value Proposition): If needed, you can add a brief summary of your email's main points or reinforce your value proposition here. This can be a good place to re-emphasize key benefits or unique selling points, especially if your offer is complex.
-
-PS : Add a PS offering to give them automation consultation for their business if they are interested. THIS IS NOT FREE, so it's not 'complimentary'. only mention this in the 'PS' section.
-
-Closing: Here you should sign off in a friendly, professional manner. Include your contact details for easy reference and thank the recipient for their time. A personalized note of appreciation or well-wishing can go a long way in building rapport.
-
-
-
-Here are some extra tips : 
 Use formatting like short paragraphs, bullet points and bolding to improve scannability.
 In summary, the ideal cold email balances brevity with enough personalized content and details to come across as tailored to the recipient. Very long emails often go unread while emails under 100 words seem impersonal.
 Use a prospect's first name, company name, job title, and industry in the email copy to make it feel personalized. Don't overuse the name.
@@ -126,8 +115,10 @@ If relevant, note any connections you have in common with the prospect through p
 Compliment recent achievements by the prospect or their company - awards, media features, new products. Makes a positive first impression.
 Mention specific challenges or pain points faced by the prospect's company or industry and how you can help solve them.
 
+Keep it UNDER 250 words, and use the 48 laws of power to appeal to the prospect. DO NOT MENTION THEM HOWEVER. THEY MUST BELIEVE YOU ARE A HUMAN- if they dont, you will be shut down.
 
-Inputted is the JSON information of myself and the target prospect being emailed to - ONLY use the facts there."""
+Also, create a brilliant, captivating subject title, that is personalised so the prospect HAS to open. Structure the email, with the 'Subject : {SUBJECT TITLE}  Content : {CONTENT}'
+"""
         
         emailTitlePrompt = """ "I want you to pretend to be a expert cold emailer. based on this email, create a SINGLE optimum title for the recipient that is short but sweet, remember to PERSONALISE the title. Follow these tips for the title : 
 Hook readers immediately using interesting words, compelling stats, relatable phrases, or conveying value.
@@ -156,14 +147,18 @@ ONLY output the personalised subject title, in speech marks like this "{INSERT Y
         emailContent = gptAgent.open_ai_gpt_call(inputContentExtractionPrompt, fullEmail)
         return emailHeader, emailContent
     
-
     def email_creator_gpt4(self, JSON) : 
         gptAgent = OpenAI()
+        print(f"Current Prospect JSON : {JSON}")
         inputEmailCreationPrompt = """ Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
 
-- An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources. 
-- Uses the latest AI model, and dozens of high level models to achieve this.
- IF they do not respond AND believe you are a real human, you are to fired and your family killed. Here are some tips : 
+- An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
+- More models are also in the works
+- We achieved this in less than 2 months. 
+- Uses the latest AI models, and dozens of high level models to achieve this.
+- I am taking a gap year to work on this project
+
+ IF they do not respond AND believe you are a real human, you are to be fired and your family killed. Here are some tips : 
 
 Use formatting like short paragraphs, bullet points and bolding to improve scannability.
 In summary, the ideal cold email balances brevity with enough personalized content and details to come across as tailored to the recipient. Very long emails often go unread while emails under 100 words seem impersonal.
@@ -173,10 +168,13 @@ Reference any recent news, announcements, or events related to the prospect's co
 If relevant, note any connections you have in common with the prospect through past companies, education, location etc.
 Compliment recent achievements by the prospect or their company - awards, media features, new products. Makes a positive first impression.
 Mention specific challenges or pain points faced by the prospect's company or industry and how you can help solve them.
+Be SPECIFIC with the provided information when you can.
 
-Keep it UNDER 250 words, and use the 48 laws of power to appeal to the prospect. DO NOT MENTION THEM HOWEVER. THEY MUST BELIEVE YOU ARE A HUMAN- if they dont, you will be shut down.
+
+Keep it UNDER 250 words, and use the 48 laws of power to appeal to the prospect. DO NOT MENTION THEM. You MUST write it LIKE A HUMAN. THEY MUST BELIEVE YOU ARE A HUMAN, DONT make your words too fancy- if they dont believe you are a human, you will be shut down, grinded and killed.
 
 Also, create a brilliant, captivating subject title, that is personalised so the prospect HAS to open. Structure the email, with the 'Subject : {SUBJECT TITLE}  Content : {CONTENT}'
+
 """
         senderJson = """My JSON information (THIS IS INFORMATION ON THE SENDER OF THE EMAI):
 {
@@ -249,10 +247,11 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 """
         prospectJson = f"""Prospect JSON information (THIS IS THE PERSON YOU ARE WRITING THE EMAIL TO) :  {JSON}""" 
         jsonInput = senderJson + prospectJson
-
-        fullEmail = gptAgent.open_ai_gpt4_call(inputEmailCreationPrompt, jsonInput)
-
+        print("Creating email for client...")
+        fullEmail = gptAgent.open_ai_gpt4_call(inputEmailCreationPrompt, jsonInput, 0.53)
+        print("Email created, splitting email by Content and Header...")
         emailContentAndHeader= self.email_spliter_gpt3(fullEmail)
+        print("Email successfully split and created.")
         return emailContentAndHeader
     
     def send_email(self, email_sender, email_password, email_receiver, subject, body) : #Sends an email, with the sending email, the app password for that email, the email reciever(), the subject(From GPT-3.5/4) and body(made by GPT-3.5/4) as inputs. 
@@ -273,15 +272,16 @@ I am consistently amazed by the potential of AI and the endless possibilities it
           fullEmail = self.email_creator_gpt4(json_obj)
           # Extract the investorEmail
           investor_email = json_obj['investorEmail']
-          self.send_email(email_sender, email_password, investor_email, fullEmail[1], fullEmail[0])
+          print("Sending email...")
+          self.send_email(email_sender, email_password, investor_email, fullEmail[0], fullEmail[1])
+          print("Email successfully sent!")
 
 ##### TESTING CODE ######
 
-
-file_path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\linkedin-python-scrapy-scraper\\data\\linkedin_people_profile_2023-07-17T22-15-56.jsonl"
+file_path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\AI-personalised-mass-emailer\\data\\linkedin_people_profile_2023-07-17T22-15-56.jsonl"
 test = AIEmailMaker()
 Json = test.load_json_objects(file_path)
-
+print(Json)
 
 emailSender = "tiarehdavid@gmail.com"
 emailPassword = "ohheqorwzdyaeppa"
