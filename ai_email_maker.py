@@ -150,7 +150,7 @@ ONLY output the personalised subject title, in speech marks like this "{INSERT Y
     def email_creator_gpt4(self, JSON) : 
         gptAgent = OpenAI()
         print(f"Current Prospect JSON : {JSON}")
-        inputEmailCreationPrompt = """ Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
+        inputEmailCreationPrompt = """Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
 
 - An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
 - More models are also in the works
@@ -181,11 +181,9 @@ Also, create a brilliant, captivating subject title, that is personalised so the
   "profile": {
     "name": "David Tiareh",
     "degree": "BSc Computer Science student",
-    "university": "Brunel University London",
-    "location": "Harrow, England, United Kingdom",
-    "contact_info": "N/A",
+  
     "connections": 14,
-    "summary": "As a dedicated AI engineer, I've spent the past two years deeply studying a multitude of research papers. My goal has been to understand and master the capabilities of the latest AI models. More than a job, this has been a journey, allowing me to solidify my knowledge and recognize the importance of focus and deep learning.
+    "summary": "As a dedicated AI engineer, I've spent the past two years deeply studying a multitude of research papers. My goal has been to understand and master the capabilities of the test AI models. More than a job, this has been a journey, allowing me to solidify my knowledge and recognize the importance of focus and deep learning.
 
 Commitment to my field inspired me to take a sabbatical between my 2nd and penultimate year of university. This was a decision to invest in myself, to fully immerse in developing and integrating AI into new SaaS products. Like a chess player planning several moves ahead, this is my strategic choice for long-term growth.
 
@@ -220,7 +218,6 @@ I am consistently amazed by the potential of AI and the endless possibilities it
   ],
   "education": [
     {
-      "university": "Brunel University London",
       "period": "Sep 2021 - Jun 2024",
       "grade": "Expected 1st",
       "activities_and_societies": ["Badminton", "Boxing", "MMA", "Table Tennis", "Arabic"],
@@ -242,8 +239,6 @@ I am consistently amazed by the potential of AI and the endless possibilities it
       "duration": "Feb 2023 - Jul 2023",
       "description": "Created a sentiment analysis model from scratch for analysing public opinion...",
       "skills": ["Stock Market Analysis", "Sentiment Analysis", "API integration", "Model Creation", "Artificial Intelligence (AI)", "JavaScript"]
-
-
 """
         prospectJson = f"""Prospect JSON information (THIS IS THE PERSON YOU ARE WRITING THE EMAIL TO) :  {JSON}""" 
         jsonInput = senderJson + prospectJson
