@@ -266,7 +266,7 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 
     def ai_email_full_sending_and_creation(self, email_sendersList, email_passwordList, json_list):
       estimatedOveralPrice = 0
-      email_count = 0  # Initialize an email counter
+      email_count = 1  # Initialize an email counter
       sender_index = 0  # Initialize sender index
 
       for json_obj in json_list:
@@ -275,7 +275,7 @@ I am consistently amazed by the potential of AI and the endless possibilities it
           # Fetch the sender email and password
           senderEmail = email_sendersList[sender_index]
           emailPassword = email_passwordList[sender_index]
-          print("Current email number : " + f"{sender_index}")
+          print(f"#######     EMAIL {email_count}     #######")
           fullEmail = self.email_creator_gpt4(json_obj)
           # Extract the investorEmail
           investor_email = json_obj['investorEmail']
@@ -292,10 +292,8 @@ I am consistently amazed by the potential of AI and the endless possibilities it
           
           print("""
 
-
 """)
           email_count += 1  # Increment the email counter
-
       print("########## FINISH-ALL EMAILS SENT ##########")
 
 ##### TESTING CODE ######
