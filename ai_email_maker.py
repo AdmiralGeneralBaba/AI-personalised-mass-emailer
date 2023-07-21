@@ -151,7 +151,7 @@ ONLY output the personalised subject title, in speech marks like this "{INSERT Y
     
     def email_creator_gpt4(self, JSON) : 
         gptAgent = OpenAI()
-        print(f"Current Prospect JSON : {JSON}")
+        # print(f"Current Prospect JSON : {JSON}")
         inputEmailCreationPrompt = """Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
 
 - An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
