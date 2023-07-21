@@ -40,7 +40,7 @@ path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\linkedin-python-scrapy-sc
 
 test = AIEmailingSystem() 
 testOutput = test.extract_final(path, 0)
-print(testOutput[0])
+
 
 
 # This will print the email and LinkedIn username from the first row

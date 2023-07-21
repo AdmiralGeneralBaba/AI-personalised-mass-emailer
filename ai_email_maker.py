@@ -146,10 +146,12 @@ ONLY output the personalised subject title, in speech marks like this "{INSERT Y
         emailHeader = gptAgent.open_ai_gpt_call(inputHeaderExtractionPrompt, fullEmail)
         emailContent = gptAgent.open_ai_gpt_call(inputContentExtractionPrompt, fullEmail)
         return emailHeader, emailContent
+   
+
     
     def email_creator_gpt4(self, JSON) : 
         gptAgent = OpenAI()
-        print(f"Current Prospect JSON : {JSON}")
+        # print(f"Current Prospect JSON : {JSON}")
         inputEmailCreationPrompt = """Pretend you are expert cold emailer. Using the json of myself and the prospect provided, you are tasked to write a cold email, trying to convince him/her to invest in the following AI business: 
 
 - An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
@@ -262,23 +264,46 @@ I am consistently amazed by the potential of AI and the endless possibilities it
             smtp.login(email_sender, email_password)
             smtp.sendmail(email_sender, email_receiver, em.as_string())
 
-    def ai_email_full_sending_and_creation(self, email_sender, email_password, json_list): 
+    def ai_email_full_sending_and_creation(self, email_sendersList, email_passwordList, json_list):
+      estimatedOveralPrice = 0
+      email_count = 1  # Initialize an email counter
+      sender_index = 0  # Initialize sender index
+
       for json_obj in json_list:
+          # Calculate sender index based on email count
+          sender_index = (email_count // 2) % len(email_sendersList)
+          # Fetch the sender email and password
+          senderEmail = email_sendersList[sender_index]
+          emailPassword = email_passwordList[sender_index]
+          print(f"#######     EMAIL {email_count}     #######")
           fullEmail = self.email_creator_gpt4(json_obj)
           # Extract the investorEmail
           investor_email = json_obj['investorEmail']
           print("Sending email...")
-          self.send_email(email_sender, email_password, investor_email, fullEmail[0], fullEmail[1])
+          promptPrice = 0.05
+          priceResponse = (len(fullEmail) * 0.75) * 0.06
+          estimatedEmailPrice = promptPrice + priceResponse
+        
+          self.send_email(senderEmail, emailPassword, investor_email, fullEmail[0], fullEmail[1])
           print("Email successfully sent!")
+          print("Cost of email : " + f"{estimatedEmailPrice}")
+          estimatedOveralPrice += estimatedEmailPrice
+          print("Current total cost : " + f"{estimatedOveralPrice}")
+          
+          print("""
+
+""")
+          email_count += 1  # Increment the email counter
+      print("########## FINISH-ALL EMAILS SENT ##########")
 
 ##### TESTING CODE ######
 
 file_path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\AI-personalised-mass-emailer\\data\\linkedin_people_profile_2023-07-17T22-15-56.jsonl"
 test = AIEmailMaker()
 Json = test.load_json_objects(file_path)
-print(Json)
+# print(Json)
 
-emailSender = "tiarehdavid@gmail.com"
-emailPassword = "ohheqorwzdyaeppa"
+emailSenderList = ["tiarehdavid@gmail.com", "tiarehdave@gmail.com"] 
+emailPasswordList = ["ohheqorwzdyaeppa", "rzlpxubythemzcub"]
 
-test.ai_email_full_sending_and_creation(emailSender, emailPassword, Json)
+test.ai_email_full_sending_and_creation(emailSenderList, emailPasswordList, Json)
