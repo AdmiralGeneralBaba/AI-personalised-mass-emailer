@@ -1,3 +1,24 @@
+# AI personalised Mass Emailer instructions : 
+- AS of 29/07/2023 : 
+TO SCRAPE : 
+1. You have to go to 'spiders', then to 'linkedin_people_profiles', and from there you have to: 
+2. Input your 'path' of your excel file.
+3. Then, you have to change the values of 'profile' to match that of the excel file such that they equal to the description given in the dictionary, in this line : 
+4. Here is the line :   yield scrapy.Request(url=linkedin_people_url, callback=self.parse_profile, meta={'investorEmail': profile[0], 'profile': profile[1], 'linkedin_url': linkedin_people_url})
+5. e.g if 'investorEmail' is at the 4th column, you will change 'profile[0]' to 'profile[3]'
+TO EMAIL : 
+1. You have to go to 'ai_email_maker.py'
+2. Input your JSON path (after you have scraped it using scrapy)
+3. Input your list of emails that you are using into these arrays: 
+
+emailSenderList = ["tiarehdavid@gmail.com", "tiarehdave@gmail.com"] 
+emailPasswordList = ["ohheqorwzdyaeppa", "rzlpxubythemzcub"]
+4. Then you run it like this, with these inputs : test.ai_email_full_sending_and_creation(emailSenderList, emailPasswordList, Json)
+
+
+NEED TO HAVE THIS SO IT IS MUCH EASIER TO CHANGE 
+
+
 # linkedin-python-scrapy-scraper
 Python Scrapy spiders that scrape job data & people and company profiles from [LinkedIn.com](https://www.linkedin.com/). 
 
@@ -187,27 +208,6 @@ Or if you would like to save your data to another type of database then be sure 
 
 ### Deactivating ScrapeOps Proxy & Monitor
 To deactivate the ScrapeOps Proxy & Monitor simply comment out the follow code in your `settings.py` file:
-
-```python
-# settings.py
-
-# SCRAPEOPS_API_KEY = 'YOUR_API_KEY'
-
-# SCRAPEOPS_PROXY_ENABLED = True
-
-# EXTENSIONS = {
-# 'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
-# }
-
-# DOWNLOADER_MIDDLEWARES = {
-
-#     ## ScrapeOps Monitor
-#     'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
-#     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    
-#     ## Proxy Middleware
-#     'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
-# }
 
 
 

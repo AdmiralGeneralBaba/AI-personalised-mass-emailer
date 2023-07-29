@@ -298,10 +298,9 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 
 ##### TESTING CODE ######
 
-file_path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\AI-personalised-mass-emailer\\data\\linkedin_people_profile_2023-07-17T22-15-56.jsonl"
+file_path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\AI-personalised-mass-emailer\\Code\\data\\linkedin_people_profile_2023-07-17T22-15-56.jsonl"
 test = AIEmailMaker()
 Json = test.load_json_objects(file_path)
-# print(Json)
 
 emailSenderList = ["tiarehdavid@gmail.com", "tiarehdave@gmail.com"] 
 emailPasswordList = ["ohheqorwzdyaeppa", "rzlpxubythemzcub"]
