@@ -3,9 +3,9 @@
 TO SCRAPE : 
 1. You have to go to 'spiders', then to 'linkedin_people_profiles', and from there you have to: 
 2. Input your 'path' of your excel file.
-3. Then, you have to change the values of 'profile' to match that of the excel file such that they equal to the description given in the dictionary, in this line : 
-4. Here is the line :   yield scrapy.Request(url=linkedin_people_url, callback=self.parse_profile, meta={'investorEmail': profile[0], 'profile': profile[1], 'linkedin_url': linkedin_people_url})
-5. e.g if 'investorEmail' is at the 4th column, you will change 'profile[0]' to 'profile[3]'
+3. Then, you have to go to 'excel_info_extractor', and then input the names of the columns that the investor's email is, and THEN the linkedinurl of that person's profile, this line here :   emailAndLinkedinUrl = list(zip(df['Email'], df['Person Linkedin Url']))
+
+
 TO EMAIL : 
 1. You have to go to 'ai_email_maker.py'
 2. Input your JSON path (after you have scraped it using scrapy)

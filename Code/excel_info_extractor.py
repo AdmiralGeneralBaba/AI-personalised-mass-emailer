@@ -14,7 +14,12 @@ class AIEmailingSystem :
         df = xl.parse(sheet)
 
         # Create a list of tuples. Each tuple contains an email and the corresponding LinkedIn URL from the same row
-        emailAndLinkedinUrl = list(zip(df['Email'], df['Person Linkedin Url']))
+        print("Please input the column, accounting for captials and spacing, for the investor 'email' : ")
+        emailName = input()
+        print("Now, please input the column, accounting for captials and spacing, for the linkedin url of the investors column : ")
+        investorsLinkedin = input()
+        emailAndLinkedinUrl = list(zip(df[f'{emailName}'], df[f'{investorsLinkedin}']))
+        
 
         return emailAndLinkedinUrl
     def extract_names_from_urls(self, tupleList):
