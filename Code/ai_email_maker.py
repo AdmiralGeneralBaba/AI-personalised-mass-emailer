@@ -252,7 +252,7 @@ I am consistently amazed by the potential of AI and the endless possibilities it
         print("Email successfully split and created.")
         return emailContentAndHeader
     
-    def send_email(self, email_sender, email_password, email_receiver, subject, body) : #Sends an email, with the sending email, the app password for that email, the email reciever(), the subject(From GPT-3.5/4) and body(made by GPT-3.5/4) as inputs. 
+    def send_email_gmail(self, email_sender, email_password, email_receiver, subject, body) : #Sends an email, with the sending email, the app password for that email, the email reciever(), the subject(From GPT-3.5/4) and body(made by GPT-3.5/4) as inputs. 
         em = EmailMessage()
         em['From'] = f'Dave {email_sender}'
         em['To'] = email_receiver
@@ -264,7 +264,24 @@ I am consistently amazed by the potential of AI and the endless possibilities it
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp: 
             smtp.login(email_sender, email_password)
             smtp.sendmail(email_sender, email_receiver, em.as_string())
+    def send_email_outlook(self, email_sender, email_password, email_receiver, subject, body):
+      em = EmailMessage()
+      em['From'] = f'Dave {email_sender}'
+      em['To'] = email_receiver
+      em['Subject'] = subject
+      em.set_content(body)
 
+      # Use the Microsoft SMTP server and port for TLS
+      smtp_server = 'smtp.office365.com'
+      smtp_port = 587
+
+      context = ssl.create_default_context()
+
+      # Use SMTP and start the TLS session after connecting
+      with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+          smtp.starttls(context=context)  
+          smtp.login(email_sender, email_password)
+          smtp.sendmail(email_sender, email_receiver, em.as_string())
     def ai_email_full_sending_and_creation(self, email_sendersList, email_passwordList, json_list, sender_name, num_of_emails_sent_per_email):
       estimatedOveralPrice = 0
       email_count = 0  # Initialize an email counter
@@ -285,7 +302,10 @@ I am consistently amazed by the potential of AI and the endless possibilities it
           priceResponse = (len(fullEmail) * 0.75) * 0.06
           estimatedEmailPrice = promptPrice + priceResponse
         
-          self.send_email(senderEmail, emailPassword, investor_email, fullEmail[0], fullEmail[1])
+          if 'gmail.com' in senderEmail:
+            self.send_email_gmail(senderEmail, emailPassword, investor_email, fullEmail[0], fullEmail[1])
+          else:
+            self.send_email_outlook(senderEmail, emailPassword, investor_email, fullEmail[0], fullEmail[1])
           print("Email successfully sent!")
           print("Cost of email : " + f"{estimatedEmailPrice}")
           estimatedOveralPrice += estimatedEmailPrice
