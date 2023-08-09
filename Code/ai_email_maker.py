@@ -99,9 +99,10 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 
 - An Education AI project in content creation that creates content for both teachers and student holistically in all areas of study/teacher resources with prototypes created for exam paper creation, lesson planning, homework creation, question creation, flashcard creation.
 - More models are also in the works
--  We achieved this in less than 2 months. 
 - Uses the latest AI models, and dozens of high level models to achieve this.
 - I am taking a gap year to work on this project
+
+The call to action will be a free demo of the product in action, in 2-3 weeks.
 
  IF they do not respond AND believe you are a real human, you are to be fired and your family killed. Here are some tips : 
 
@@ -266,7 +267,7 @@ I am consistently amazed by the potential of AI and the endless possibilities it
 
     def ai_email_full_sending_and_creation(self, email_sendersList, email_passwordList, json_list, sender_name, num_of_emails_sent_per_email):
       estimatedOveralPrice = 0
-      email_count = 1  # Initialize an email counter
+      email_count = 0  # Initialize an email counter
       sender_index = 0  # Initialize sender index
 
       for json_obj in json_list:
@@ -303,7 +304,7 @@ file_path = "C:\\Users\\david\\Desktop\\Linkedin\\Linkedin code\\AI-personalised
 test = AIEmailMaker()
 Json_list_of_leads = test.load_json_objects(file_path)
 
-emailSenderList = ["tiarehdavid@gmail.com", "tiarehdave@gmail.com", "algocolimited@gmail.com", "algoco.2023@gmail.com", "algoco.ai@gmail.com"]
-emailPasswordList = ["ohheqorwzdyaeppa", "rzlpxubythemzcub", "prjbtomxnarpxval", "ratysfmqfkyfpykc", "evzmjzelafsruwfv"]
+emailSenderList = ["tiarehdavid@gmail.com", "tiarehdave@gmail.com", "algocolimited@gmail.com", "algoco.2023@gmail.com", "algoco.ai@gmail.com", "algo.co.ltd@gmail.com"]
+emailPasswordList = ["ohheqorwzdyaeppa", "rzlpxubythemzcub", "prjbtomxnarpxval", "ratysfmqfkyfpykc", "evzmjzelafsruwfv","xdzcifnmjlprgtxb"]
 sender_name = 'Dave'
 test.ai_email_full_sending_and_creation(emailSenderList, emailPasswordList, Json_list_of_leads, sender_name, 3)

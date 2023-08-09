@@ -2,7 +2,7 @@ import scrapy
 from excel_info_extractor import AIEmailingSystem
 
 
-path = "C:\\Users\\david\\OneDrive\\Documents\\GitHub\\linkedin-python-scrapy-scraper\\venture capital _ private equity - 13_914.xlsx"
+path = "C:\\Users\\david\\Desktop\\Linkedin\\Linkedin code\\AI-personalised-mass-emailer\\Leads excel files\\venture capital _ private equity - 13_914 OVERNIGHT SCRAPPING.xlsx"
 class LinkedInPeopleProfileSpider(scrapy.Spider):
     name = "linkedin_people_profile"
 

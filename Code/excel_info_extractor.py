@@ -14,10 +14,9 @@ class AIEmailingSystem :
         df = xl.parse(sheet)
 
         # Create a list of tuples. Each tuple contains an email and the corresponding LinkedIn URL from the same row
-        print("Please input the column, accounting for captials and spacing, for the investor 'email' : ")
-        emailName = input()
-        print("Now, please input the column, accounting for captials and spacing, for the linkedin url of the investors column : ")
-        investorsLinkedin = input()
+        emailName = "Email"
+      
+        investorsLinkedin = "Person Linkedin Url"
         emailAndLinkedinUrl = list(zip(df[f'{emailName}'], df[f'{investorsLinkedin}']))
         
 

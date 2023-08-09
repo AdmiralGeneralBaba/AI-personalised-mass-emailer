@@ -3,7 +3,7 @@
 TO SCRAPE : 
 1. You have to go to 'spiders', then to 'linkedin_people_profiles', and from there you have to: 
 2. Input your 'path' of your excel file.
-3. Then, you have to go to 'excel_info_extractor', and then input the names of the columns that the investor's email is, and THEN the linkedinurl of that person's profile, this line here :   emailAndLinkedinUrl = list(zip(df['Email'], df['Person Linkedin Url']))
+3. Then, Just run the 'excel_info_extractor' and follow the instructions, and the scraping will start. 
 
 
 TO EMAIL : 
